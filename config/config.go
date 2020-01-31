@@ -1,15 +1,17 @@
 package config
 
 import (
-	"gopkg.in/ini.v1"
 	"log"
 	"os"
+
+	"gopkg.in/ini.v1"
 )
 
 type ConfigList struct {
-	ApiKey    string
-	ApiSecret string
-	LogFile   string
+	Port    int
+	Name    string
+	Driver  string
+	LogFile string
 }
 
 var Config ConfigList
@@ -22,8 +24,9 @@ func init() {
 	}
 
 	Config = ConfigList{
-		ApiKey:    cfg.Section("bitflyer").Key("api_key").String(),
-		ApiSecret: cfg.Section("bitflyer").Key("api_secret").String(),
-		LogFile:   cfg.Section("gotrading").Key("log_file").String(),
+		Port:    cfg.Section("web").Key("port").MustInt(),
+		Name:    cfg.Section("db").Key("name").MustString("example.sql"),
+		Driver:  cfg.Section("db").Key("driver").String(),
+		LogFile: cfg.Section("gopractice").Key("log_file").String(),
 	}
 }
