@@ -1,10 +1,12 @@
 package main
 
 import (
-	"fmt"
-	"gopractice/config"
+	"gotrading/config"
+	"gotrading/utils"
+	"log"
 )
 
 func main() {
-	fmt.Println(config.Config.Port)
+	utils.LoggingSettings(config.Config.LogFile)
+	log.Println("test")
 }
